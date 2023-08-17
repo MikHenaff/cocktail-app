@@ -1,0 +1,12 @@
+.bold {
+  font-weight: 900;
+}
+
+.input-search,
+.input-filter {
+  width: 300px;
+}
+
+li {
+  cursor: pointer;
+}
