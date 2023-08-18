@@ -6,28 +6,32 @@ import {
   fetchDataByCocktailName,
   responseList,
 } from "./modules/fetchDataByCocktailName.js";
-//import { fetchDataById } from "./modules/fetchDataById.js";
+import { idList } from "./modules/fetchDataById.js";
 
-let cocktailListElements;
-
+const inputFilter = document.getElementById("input-filter");
 const btnFilter = document.getElementById("btn-filter");
-btnFilter.addEventListener("click", (e) => {
-  e.preventDefault();
+inputFilter.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    btnFilter.click();
+  }
+});
+btnFilter.addEventListener("click", () => {
   byIngredientList.innerHTML = "";
   responseList.innerHTML = "";
+  idList.innerHTML = "";
   fetchDataByIngredient();
-  cocktailListElements = document.getElementsByTagName("li");
-  //  if (drink.idDrink === "16333") console.log("ouf");
-  //  console.log(cocktailListElements, cocktailListElements.length);
 });
 
+const inputSearch = document.getElementById("input-search");
 const btnSearch = document.getElementById("btn-search");
-btnSearch.addEventListener("click", (e) => {
-  e.preventDefault();
+inputSearch.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    btnSearch.click();
+  }
+});
+btnSearch.addEventListener("click", () => {
   byIngredientList.innerHTML = "";
   responseList.innerHTML = "";
+  idList.innerHTML = "";
   fetchDataByCocktailName();
-  let cocktailListElements = document.getElementsByTagName("li");
 });
-
-//fetchDataById();

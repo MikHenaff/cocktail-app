@@ -1,132 +1,121 @@
-import { liIdTable } from "./fetchDataByIngredient.js";
+import { idByIngredient, byIngredientList } from "./fetchDataByIngredient.js";
+import { idByName, responseList } from "./fetchDataByCocktailName.js";
 
-liIdTable ? console.log(liIdTable) : console.log("fuck");
+export const idList = document.getElementById("id-list");
 
-export const IdList = document.getElementById("id-list");
+export async function fetchDataById(id) {
+  idList.innerHTML = "";
+  byIngredientList.innerHTML = "";
+  responseList.innerHTML = "";
+  idByIngredient ? (id = idByIngredient) : (id = idByName);
+  console.log(id);
+  let url;
+  if (id) {
+    url = `https://thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+  }
+  try {
+    const response = await fetch(url);
+    const result = await response.json();
+    const drink = result.drinks[0];
 
-//export async function fetchDataById() {
-//  let url;
-//  let CocktailId;
-//  if (CocktailId) {
-//    url = `https://thecocktaildb.com/api/json/v1/1/lookup.php?i=${CocktailId}`;
-//  }
+    const li = document.createElement("li");
 
-//  try {
-//    const response = await fetch(url);
-//    const result = await response.json();
-//    const drinks = result.drinks;
-//    //drinks.map((drink) => {
-//    const li = document.createElement("li");
-//    //  li.setAttribute("id", drink.idDrink);
+    const name = document.createElement("h2");
+    name.innerText = drink.strDrink;
+    li.appendChild(name);
 
-//    const name = document.createElement("h2");
-//    name.innerText = drinks.strDrink;
-//    li.appendChild(name);
+    const img = document.createElement("img");
+    img.setAttribute("src", `${drink.strDrinkThumb}/preview`);
+    img.setAttribute("alt", drink.strDrink);
+    li.appendChild(img);
 
-//    const img = document.createElement("img");
-//    img.setAttribute("src", `${drinks.strDrinkThumb}/preview`);
-//    img.setAttribute("alt", drinks.strDrink);
-//    li.appendChild(img);
+    let ingredientsTable = [];
+    const ingredients = document.createElement("p");
+    if (drink.strIngredient1 && drink.strMeasure1) {
+      ingredientsTable.push(drink.strIngredient1 + ": " + drink.strMeasure1);
+    } else if (drink.strIngredient1 && !drink.strMeasure1) {
+      ingredientsTable.push(drink.strIngredient1);
+    }
+    if (drink.strIngredient2 && drink.strMeasure2) {
+      ingredientsTable.push(drink.strIngredient2 + ": " + drink.strMeasure2);
+    } else if (drink.strIngredient2 && !drink.strMeasure2) {
+      ingredientsTable.push(drink.strIngredient2);
+    }
+    if (drink.strIngredient3 && drink.strMeasure3) {
+      ingredientsTable.push(drink.strIngredient3 + ": " + drink.strMeasure3);
+    } else if (drink.strIngredient3 && !drink.strMeasure3) {
+      ingredientsTable.push(drink.strIngredient3);
+    }
+    if (drink.strIngredient4 && drink.strMeasure4) {
+      ingredientsTable.push(drink.strIngredient4 + ": " + drink.strMeasure4);
+    } else if (drink.strIngredient4 && !drink.strMeasure4) {
+      ingredientsTable.push(drink.strIngredient4);
+    }
+    if (drink.strIngredient5 && drink.strMeasure5) {
+      ingredientsTable.push(drink.strIngredient5 + ": " + drink.strMeasure5);
+    } else if (drink.strIngredient5 && !drink.strMeasure5) {
+      ingredientsTable.push(drink.strIngredient5);
+    }
+    if (drink.strIngredient6 && drink.strMeasure6) {
+      ingredientsTable.push(drink.strIngredient6 + ": " + drink.strMeasure6);
+    } else if (drink.strIngredient6 && !drink.strMeasure6) {
+      ingredientsTable.push(drink.strIngredient6);
+    }
+    if (drink.strIngredient7 && drink.strMeasure7) {
+      ingredientsTable.push(drink.strIngredient7 + ": " + drink.strMeasure7);
+    } else if (drink.strIngredient7 && !drink.strMeasure7) {
+      ingredientsTable.push(drink.strIngredient7);
+    }
+    if (drink.strIngredient8 && drink.strMeasure8) {
+      ingredientsTable.push(drink.strIngredient8 + ": " + drink.strMeasure8);
+    } else if (drink.strIngredient8 && !drink.strMeasure8) {
+      ingredientsTable.push(drink.strIngredient8);
+    }
+    if (drink.strIngredient9 && drink.strMeasure9) {
+      ingredientsTable.push(drink.strIngredient9 + ": " + drink.strMeasure9);
+    } else if (drink.strIngredient9 && !drink.strMeasure9) {
+      ingredientsTable.push(drink.strIngredient9);
+    }
+    if (drink.strIngredient10 && drink.strMeasure10) {
+      ingredientsTable.push(drink.strIngredient10 + ": " + drink.strMeasure10);
+    } else if (drink.strIngredient10 && !drink.strMeasure10) {
+      ingredientsTable.push(drink.strIngredient10);
+    }
+    if (drink.strIngredient11 && drink.strMeasure11) {
+      ingredientsTable.push(drink.strIngredient11 + ": " + drink.strMeasure11);
+    } else if (drink.strIngredient11 && !drink.strMeasure11) {
+      ingredientsTable.push(drink.strIngredient11);
+    }
+    if (drink.strIngredient12 && drink.strMeasure12) {
+      ingredientsTable.push(drink.strIngredient12 + ": " + drink.strMeasure12);
+    } else if (drink.strIngredient12 && !drink.strMeasure12) {
+      ingredientsTable.push(drink.strIngredient12);
+    }
+    if (drink.strIngredient13 && drink.strMeasure13) {
+      ingredientsTable.push(drink.strIngredient13 + ": " + drink.strMeasure13);
+    } else if (drink.strIngredient13 && !drink.strMeasure13) {
+      ingredientsTable.push(drink.strIngredient13);
+    }
+    if (drink.strIngredient14 && drink.strMeasure14) {
+      ingredientsTable.push(drink.strIngredient14 + ": " + drink.strMeasure14);
+    } else if (drink.strIngredient14 && !drink.strMeasure14) {
+      ingredientsTable.push(drink.strIngredient14);
+    }
+    if (drink.strIngredient15 && drink.strMeasure15) {
+      ingredientsTable.push(drink.strIngredient15 + ": " + drink.strMeasure15);
+    } else if (drink.strIngredient15 && !drink.strMeasure15) {
+      ingredientsTable.push(drink.strIngredient15);
+    }
+    ingredientsTable = ingredientsTable.join("<br>");
+    ingredients.innerHTML = `<span class="bold">Ingredients:</span><br>${ingredientsTable}`;
+    li.appendChild(ingredients);
 
-//    let ingredientsTable = [];
-//    const ingredients = document.createElement("p");
-//    if (drinks.strIngredient1 && drinks.strMeasure1) {
-//      ingredientsTable.push(drinks.strIngredient1 + ": " + drinks.strMeasure1);
-//    } else if (drinks.strIngredient1 && !drinks.strMeasure1) {
-//      ingredientsTable.push(drinks.strIngredient1);
-//    }
-//    if (drinks.strIngredient2 && drinks.strMeasure2) {
-//      ingredientsTable.push(drinks.strIngredient2 + ": " + drinks.strMeasure2);
-//    } else if (drinks.strIngredient2 && !drinks.strMeasure2) {
-//      ingredientsTable.push(drinks.strIngredient2);
-//    }
-//    if (drinks.strIngredient3 && drinks.strMeasure3) {
-//      ingredientsTable.push(drinks.strIngredient3 + ": " + drinks.strMeasure3);
-//    } else if (drinks.strIngredient3 && !drinks.strMeasure3) {
-//      ingredientsTable.push(drinks.strIngredient3);
-//    }
-//    if (drinks.strIngredient4 && drinks.strMeasure4) {
-//      ingredientsTable.push(drinks.strIngredient4 + ": " + drinks.strMeasure4);
-//    } else if (drinks.strIngredient4 && !drinks.strMeasure4) {
-//      ingredientsTable.push(drinks.strIngredient4);
-//    }
-//    if (drinks.strIngredient5 && drinks.strMeasure5) {
-//      ingredientsTable.push(drinks.strIngredient5 + ": " + drinks.strMeasure5);
-//    } else if (drinks.strIngredient5 && !drinks.strMeasure5) {
-//      ingredientsTable.push(drinks.strIngredient5);
-//    }
-//    if (drinks.strIngredient6 && drinks.strMeasure6) {
-//      ingredientsTable.push(drinks.strIngredient6 + ": " + drinks.strMeasure6);
-//    } else if (drinks.strIngredient6 && !drinks.strMeasure6) {
-//      ingredientsTable.push(drinks.strIngredient6);
-//    }
-//    if (drinks.strIngredient7 && drinks.strMeasure7) {
-//      ingredientsTable.push(drinks.strIngredient7 + ": " + drinks.strMeasure7);
-//    } else if (drinks.strIngredient7 && !drinks.strMeasure7) {
-//      ingredientsTable.push(drinks.strIngredient7);
-//    }
-//    if (drinks.strIngredient8 && drinks.strMeasure8) {
-//      ingredientsTable.push(drinks.strIngredient8 + ": " + drinks.strMeasure8);
-//    } else if (drinks.strIngredient8 && !drinks.strMeasure8) {
-//      ingredientsTable.push(drinks.strIngredient8);
-//    }
-//    if (drinks.strIngredient9 && drinks.strMeasure9) {
-//      ingredientsTable.push(drinks.strIngredient9 + ": " + drinks.strMeasure9);
-//    } else if (drinks.strIngredient9 && !drinks.strMeasure9) {
-//      ingredientsTable.push(drinks.strIngredient9);
-//    }
-//    if (drinks.strIngredient10 && drinks.strMeasure10) {
-//      ingredientsTable.push(
-//        drinks.strIngredient10 + ": " + drinks.strMeasure10
-//      );
-//    } else if (drinks.strIngredient10 && !drinks.strMeasure10) {
-//      ingredientsTable.push(drinks.strIngredient10);
-//    }
-//    if (drinks.strIngredient11 && drinks.strMeasure11) {
-//      ingredientsTable.push(
-//        drinks.strIngredient11 + ": " + drinks.strMeasure11
-//      );
-//    } else if (drinks.strIngredient11 && !drinks.strMeasure11) {
-//      ingredientsTable.push(drinks.strIngredient11);
-//    }
-//    if (drinks.strIngredient12 && drinks.strMeasure12) {
-//      ingredientsTable.push(
-//        drinks.strIngredient12 + ": " + drinks.strMeasure12
-//      );
-//    } else if (drinks.strIngredient12 && !drinks.strMeasure12) {
-//      ingredientsTable.push(drinks.strIngredient12);
-//    }
-//    if (drinks.strIngredient13 && drinks.strMeasure13) {
-//      ingredientsTable.push(
-//        drinks.strIngredient13 + ": " + drinks.strMeasure13
-//      );
-//    } else if (drinks.strIngredient13 && !drinks.strMeasure13) {
-//      ingredientsTable.push(drinks.strIngredient13);
-//    }
-//    if (drinks.strIngredient14 && drinks.strMeasure14) {
-//      ingredientsTable.push(
-//        drinks.strIngredient14 + ": " + drinks.strMeasure14
-//      );
-//    } else if (drinks.strIngredient14 && !drinks.strMeasure14) {
-//      ingredientsTable.push(drinks.strIngredient14);
-//    }
-//    if (drinks.strIngredient15 && drinks.strMeasure15) {
-//      ingredientsTable.push(
-//        drinks.strIngredient15 + ": " + drinks.strMeasure15
-//      );
-//    } else if (drinks.strIngredient15 && !drinks.strMeasure15) {
-//      ingredientsTable.push(drinks.strIngredient15);
-//    }
-//    ingredientsTable = ingredientsTable.join("\n");
-//    ingredients.innerText = ingredientsTable;
-//    li.appendChild(ingredients);
+    const instructions = document.createElement("p");
+    instructions.innerHTML = `<span class="bold">Instructions:</span><br>${drink.strInstructions}`;
+    li.appendChild(instructions);
 
-//    const instructions = document.createElement("p");
-//    instructions.innerHTML = `<span class="bold">Instructions:</span><br>${drinks.strInstructions}`;
-//    li.appendChild(instructions);
-
-//    IdList.appendChild(li);
-//  } catch (error) {
-//    console.error(error);
-//  }
-//}
+    idList.appendChild(li);
+  } catch (error) {
+    console.error(error);
+  }
+}

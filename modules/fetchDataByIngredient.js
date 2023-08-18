@@ -1,7 +1,8 @@
-export const byIngredientList = document.getElementById("by-ingredient-list");
-//export const cocktailListElements = document.getElementsByTagName("li");
+import { fetchDataById } from "./fetchDataById.js";
 
-export let liIdTable = [];
+export const byIngredientList = document.getElementById("by-ingredient-list");
+
+export let idByIngredient;
 
 export async function fetchDataByIngredient() {
   const inputFilter = document.getElementById("input-filter");
@@ -11,6 +12,7 @@ export async function fetchDataByIngredient() {
 
   if (ingredientValue) {
     url = `https://thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientValue}`;
+    inputFilter.value = "";
   }
 
   try {
@@ -21,7 +23,6 @@ export async function fetchDataByIngredient() {
     drinks.map((drink) => {
       const li = document.createElement("li");
       li.setAttribute("id", drink.idDrink);
-      liIdTable.push(drink.idDrink);
 
       const name = document.createElement("h2");
       name.innerText = drink.strDrink;
@@ -32,10 +33,15 @@ export async function fetchDataByIngredient() {
       img.setAttribute("alt", drink.strDrink);
       li.appendChild(img);
 
+      li.addEventListener("click", () => {
+        idByIngredient = li.getAttribute("id");
+        fetchDataById(idByIngredient);
+        idByIngredient = "";
+      });
+
       byIngredientList.appendChild(li);
     });
-  } catch (error) {
-    console.error(error);
+  } catch {
+    alert("Error: this ingredient is unknown, try again !");
   }
-  console.log(liIdTable); // ********************** ici ça marche !!!!!!!!!!!!!!!!!!!!!!!
 }
