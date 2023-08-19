@@ -1,24 +1,26 @@
 import { fetchDataById } from "./fetchDataById.js";
+import { responseList } from "../../main.js";
 
-export const responseList = document.getElementById("response-list");
+//export const byIngredientList = document.getElementById("by-ingredient-list");
 
-export let idByName;
+export let idByIngredient;
 
-export async function fetchDataByCocktailName() {
-  let inputSearch = document.getElementById("input-search");
-  let cocktailValue = inputSearch.value;
+export async function fetchDataByIngredient() {
+  const inputFilter = document.getElementById("input-filter");
+  const ingredientValue = inputFilter.value;
 
   let url;
 
-  if (cocktailValue) {
-    url = `https://thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailValue}`;
-    inputSearch.value = "";
+  if (ingredientValue) {
+    url = `https://thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientValue}`;
+    inputFilter.value = "";
   }
 
   try {
     const response = await fetch(url);
     const result = await response.json();
     const drinks = result.drinks;
+
     drinks.map((drink) => {
       const li = document.createElement("li");
       li.setAttribute("id", drink.idDrink);
@@ -33,14 +35,14 @@ export async function fetchDataByCocktailName() {
       li.appendChild(img);
 
       li.addEventListener("click", () => {
-        idByName = li.getAttribute("id");
-        fetchDataById(idByName);
-        idByName = "";
+        idByIngredient = li.getAttribute("id");
+        fetchDataById(idByIngredient);
+        idByIngredient = "";
       });
 
       responseList.appendChild(li);
     });
   } catch {
-    alert("Error: this cocktail name is unknown, try again !");
+    alert("Error: this ingredient is unknown, try again !");
   }
 }

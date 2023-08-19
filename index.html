@@ -6,29 +6,46 @@
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
-  <body>
-    <label for="input-search">Search by cocktail name</label>
-    <input
-      type="text"
-      id="input-search"
-      class="input-search"
-      placeholder="Enter a cocktail name (ex: margarita)"
-    />
-    <button id="btn-search">Search</button>
-    <br />
-    <br />
-    <label for="input-filter">Search by ingredient</label>
-    <input
-      type="text"
-      id="input-filter"
-      class="input-filter"
-      placeholder="Enter an ingredient (ex: vodka)"
-    />
-    <button id="btn-filter">Search</button>
+  <body id="body">
+    <!--<label for="select">Choose an option:</label>-->
+    <select name="items" id="select">
+      <option value="">--Please choose an option--</option>
+      <option value="name">search by cocktail name</option>
+      <option value="ingredient">search by ingredient</option>
+      <option value="all-cocktails">all cocktails</option>
+      <option value="all-ingredients">all ingredients</option>
+      <option value="random">a random cocktail</option>
+    </select>
+
+    <button id="random-btn" class="display-none">click</button>
+
+    <div id="display-search" class="display-none">
+      <label for="input-search">Search by cocktail name</label>
+      <input
+        type="text"
+        id="input-search"
+        class="input-search"
+        placeholder="Enter a cocktail name (ex: margarita)"
+      />
+      <button id="btn-search">Search</button>
+    </div>
+
+    <div id="display-filter" class="display-none">
+      <label for="input-filter">Search by ingredient</label>
+      <input
+        type="text"
+        id="input-filter"
+        class="input-filter"
+        placeholder="Enter an ingredient (ex: vodka)"
+      />
+      <button id="btn-filter">Search</button>
+    </div>
 
     <ul id="response-list"></ul>
-    <ul id="by-ingredient-list"></ul>
-    <ul id="id-list"></ul>
+    <!--<ul id="by-ingredient-list"></ul>
+    <ul id="id-list"></ul>-->
+
+    <button id="move-up" class="move-up">bouton flèche haut</button>
 
     <script type="module" src="./main.js"></script>
   </body>

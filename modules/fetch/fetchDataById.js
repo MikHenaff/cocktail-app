@@ -1,14 +1,10 @@
-import { idByIngredient, byIngredientList } from "./fetchDataByIngredient.js";
-import { idByName, responseList } from "./fetchDataByCocktailName.js";
-
-export const idList = document.getElementById("id-list");
+import { idByIngredient } from "./fetchDataByIngredient.js";
+import { idByName } from "./fetchDataByCocktailName.js";
+import { responseList } from "../../main.js";
 
 export async function fetchDataById(id) {
-  idList.innerHTML = "";
-  byIngredientList.innerHTML = "";
   responseList.innerHTML = "";
   idByIngredient ? (id = idByIngredient) : (id = idByName);
-  console.log(id);
   let url;
   if (id) {
     url = `https://thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
@@ -114,7 +110,7 @@ export async function fetchDataById(id) {
     instructions.innerHTML = `<span class="bold">Instructions:</span><br>${drink.strInstructions}`;
     li.appendChild(instructions);
 
-    idList.appendChild(li);
+    responseList.appendChild(li);
   } catch (error) {
     console.error(error);
   }
