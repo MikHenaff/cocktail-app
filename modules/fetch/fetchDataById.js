@@ -1,10 +1,15 @@
 import { idByIngredient } from "./fetchDataByIngredient.js";
 import { idByName } from "./fetchDataByCocktailName.js";
+import { idByLetter } from "./fetchAlphabeticalData.js";
 import { responseList } from "../../main.js";
 
 export async function fetchDataById(id) {
   responseList.innerHTML = "";
-  idByIngredient ? (id = idByIngredient) : (id = idByName);
+  idByIngredient
+    ? (id = idByIngredient)
+    : idByName
+    ? (id = idByName)
+    : (id = idByLetter);
   let url;
   if (id) {
     url = `https://thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;

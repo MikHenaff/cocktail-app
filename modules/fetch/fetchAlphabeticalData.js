@@ -1,18 +1,19 @@
 import { fetchDataById } from "./fetchDataById.js";
+//import { idByName } from "./fetchDataByCocktailName.js";
 import { responseList } from "../../main.js";
 //const responseList = document.getElementById("response-list");
 
-export let idByName;
+export let idByLetter;
 
-export async function fetchDataByCocktailName() {
-  let inputSearch = document.getElementById("input-search");
-  let cocktailValue = inputSearch.value;
+export async function fetchAlphabeticalData(letter) {
+  //  let inputSearch = document.getElementById("input-search");
+  //  let cocktailValue = inputSearch.value;
 
   let url;
 
-  if (cocktailValue) {
-    url = `https://thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailValue}`;
-    inputSearch.value = "";
+  if (letter) {
+    url = `https://thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`;
+    // issue: all cocktails are not listed (ex: Butterfly Effect exists when searching by name but doesn't exist in the Alphabetical list from this url) =====>>>  MAX 100 réponses dans retour
   }
 
   try {
@@ -21,9 +22,9 @@ export async function fetchDataByCocktailName() {
     const drinks = result.drinks;
     console.log(drinks.length);
     if (drinks.length === 1) {
-      idByName = drinks[0].idDrink;
-      fetchDataById(idByName);
-      idByName = "";
+      idByLetter = drinks[0].idDrink;
+      fetchDataById(idByLetter);
+      idByLetter = "";
     } else {
       drinks.map((drink) => {
         const li = document.createElement("li");
@@ -39,15 +40,17 @@ export async function fetchDataByCocktailName() {
         li.appendChild(img);
 
         li.addEventListener("click", () => {
-          idByName = li.getAttribute("id");
-          fetchDataById(idByName);
-          idByName = "";
+          idByLetter = li.getAttribute("id");
+          fetchDataById(idByLetter);
+          idByLetter = "";
         });
 
         responseList.appendChild(li);
       });
     }
   } catch {
-    alert("Error: this cocktail name is unknown, try again !");
+    alert(
+      `Sorry, we don't have cocktails starting with the letter "${letter}"`
+    );
   }
 }
