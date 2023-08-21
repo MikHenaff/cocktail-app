@@ -1,8 +1,9 @@
 import { responseList } from "../../main.js";
-import { fetchDataByIngredient } from "./fetchDataByIngredient.js";
+import { fetchDataByIngredientName } from "./fetchDataByIngredientName.js";
 
 export async function fetchDataByIngredientList(letter) {
-  let url = `https://thecocktaildb.com/api/json/v1/1/list.php?i=list`;
+  //Call API returning a list of all available ingredients which name starts with the clicked letter
+  const url = `https://thecocktaildb.com/api/json/v1/1/list.php?i=list`;
 
   try {
     const response = await fetch(url);
@@ -14,7 +15,7 @@ export async function fetchDataByIngredientList(letter) {
       (ingredient) =>
         ingredient.strIngredient1[0].toLowerCase() === letter.toLowerCase()
     );
-
+    // Check if there is no ingredients starting with the letter clicked (ex: "Q")
     if (ingredientsFiltered.length === 0) {
       alert(
         `Sorry, there is no ingredients starting with the letter "${letter}"`
@@ -34,14 +35,16 @@ export async function fetchDataByIngredientList(letter) {
             ingredient.strIngredient1.charAt(0).toUpperCase() +
             ingredient.strIngredient1.slice(1);
 
+          // Each ingredient of the list is clickable for a complete display of all cocktails containing it
           name.addEventListener("click", () => {
-            fetchDataByIngredient(name.innerText);
+            responseList.innerHTML = "";
+            fetchDataByIngredientName(name.innerText);
           });
 
           responseList.appendChild(name);
         });
     }
   } catch {
-    alert("Error: this ingredient list has a malfunction, try again !");
+    alert("Sorry, the connexion with the database failed, please try again !");
   }
 }

@@ -1,37 +1,51 @@
+import {
+  inputNameSearch,
+  inputIngredientSearch,
+  responseList,
+  alphabetList,
+} from "../../main.js";
 import { fetchRandomData } from "../fetch/fetchRandomData.js";
-import { responseList } from "../../main.js";
-import { alphabetList } from "../../main.js";
 import { displayCocktailsByFirstLetter } from "./displayCocktailsByFirstLetter.js";
 import { displayIngredientsByFirstLetter } from "./displayIngredientsByFirstLetter.js";
 
-let selectOption = document.getElementById("select");
+const selectOption = document.getElementById("select");
 
+// Management of the HTML element select on change
 export function onChangeSelect() {
   selectOption.addEventListener("change", () => {
-    const divSearch = document.getElementById("display-search");
-    const divFilter = document.getElementById("display-filter");
+    const divName = document.getElementById("div-name-search");
+    const divIngredient = document.getElementById("div-ingredient-search");
     const randomBtn = document.getElementById("random-btn");
 
     switch (selectOption.value) {
+      case "choose":
+        responseList.innerText = "";
+        alphabetList.style.display = "none";
+        divName.style.display = "none";
+        divIngredient.style.display = "none";
+        randomBtn.style.display = "none";
+        break;
       case "name":
         responseList.innerText = "";
-        divFilter.style.display = "none";
-        randomBtn.style.display = "none";
         alphabetList.style.display = "none";
-        divSearch.style.display = "block";
+        divIngredient.style.display = "none";
+        randomBtn.style.display = "none";
+        divName.style.display = "block";
+        inputNameSearch.focus();
         break;
       case "ingredient":
         responseList.innerText = "";
-        divSearch.style.display = "none";
-        randomBtn.style.display = "none";
         alphabetList.style.display = "none";
-        divFilter.style.display = "block";
+        divName.style.display = "none";
+        randomBtn.style.display = "none";
+        divIngredient.style.display = "block";
+        inputIngredientSearch.focus();
         break;
       case "all-cocktails":
         responseList.innerText = "";
         alphabetList.innerText = "";
-        divFilter.style.display = "none";
-        divSearch.style.display = "none";
+        divName.style.display = "none";
+        divIngredient.style.display = "none";
         randomBtn.style.display = "none";
         alphabetList.style.display = "flex";
         displayCocktailsByFirstLetter();
@@ -39,17 +53,17 @@ export function onChangeSelect() {
       case "all-ingredients":
         responseList.innerText = "";
         alphabetList.innerText = "";
-        divFilter.style.display = "none";
-        divSearch.style.display = "none";
+        divName.style.display = "none";
+        divIngredient.style.display = "none";
         randomBtn.style.display = "none";
         alphabetList.style.display = "flex";
         displayIngredientsByFirstLetter();
         break;
       case "random":
         responseList.innerText = "";
-        divFilter.style.display = "none";
-        divSearch.style.display = "none";
         alphabetList.style.display = "none";
+        divName.style.display = "none";
+        divIngredient.style.display = "none";
         randomBtn.style.display = "block";
         randomBtn.addEventListener("click", fetchRandomData);
         break;

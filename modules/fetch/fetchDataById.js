@@ -1,35 +1,48 @@
-import { idByIngredient } from "./fetchDataByIngredient.js";
-import { idByName } from "./fetchDataByCocktailName.js";
-import { idByLetter } from "./fetchAlphabeticalData.js";
 import { responseList } from "../../main.js";
+import { idByName } from "./fetchDataByCocktailName.js";
+import { idByIngredient } from "./fetchDataByIngredientName.js";
+import { idByLetter } from "./fetchDataByCocktailList.js";
+import { randomId } from "./fetchRandomData.js";
 
 export async function fetchDataById(id) {
   responseList.innerHTML = "";
-  idByIngredient
-    ? (id = idByIngredient)
-    : idByName
+
+  // Get the id of the cocktail depending on the original fetch
+  idByName
     ? (id = idByName)
-    : (id = idByLetter);
+    : idByIngredient
+    ? (id = idByIngredient)
+    : idByLetter
+    ? (id = idByLetter)
+    : randomId;
+
+  // Call API returning the cocktail data
   let url;
   if (id) {
     url = `https://thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
   }
+
   try {
     const response = await fetch(url);
     const result = await response.json();
     const drink = result.drinks[0];
 
+    // Create a card for the cocktail (name, image, ingredients, measures, instructions)
     const li = document.createElement("li");
+    li.style.cursor = "default";
 
+    // Name
     const name = document.createElement("h2");
     name.innerText = drink.strDrink;
     li.appendChild(name);
 
+    // Image
     const img = document.createElement("img");
     img.setAttribute("src", `${drink.strDrinkThumb}/preview`);
     img.setAttribute("alt", drink.strDrink);
     li.appendChild(img);
 
+    // Ingredients and measures
     let ingredientsTable = [];
     const ingredients = document.createElement("p");
     if (drink.strIngredient1 && drink.strMeasure1) {
@@ -111,12 +124,13 @@ export async function fetchDataById(id) {
     ingredients.innerHTML = `<span class="bold">Ingredients:</span><br>${ingredientsTable}`;
     li.appendChild(ingredients);
 
+    // Instructions
     const instructions = document.createElement("p");
     instructions.innerHTML = `<span class="bold">Instructions:</span><br>${drink.strInstructions}`;
     li.appendChild(instructions);
 
     responseList.appendChild(li);
   } catch (error) {
-    console.error(error);
+    alert("Sorry, the connexion with the database failed, please try again !");
   }
 }

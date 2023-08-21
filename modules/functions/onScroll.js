@@ -1,5 +1,7 @@
-let moveUp = document.getElementById("move-up");
+// Get the button
+const moveUp = document.getElementById("move-up");
 
+// Management of the display of the button when page is scrolled and scroll behavior
 export function onScroll() {
   window.onscroll = () => scrollFunction();
 }
