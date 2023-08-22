@@ -1,6 +1,9 @@
 import { fetchDataByIngredientName } from "./modules/fetch/fetchDataByIngredientName.js";
 import { fetchDataByCocktailName } from "./modules/fetch/fetchDataByCocktailName.js";
-import { onChangeSelect } from "./modules/functions/onChangeSelect.js";
+import {
+  selectOption,
+  onChangeSelect,
+} from "./modules/functions/onChangeSelect.js";
 import { onScroll } from "./modules/functions/onScroll.js";
 
 onChangeSelect();
@@ -12,7 +15,9 @@ export const responseList = document.getElementById("response-list");
 // variable for displaying the letters for an alphabetical searching
 export const alphabetList = document.getElementById("alphabet");
 
-// if "Search for a cocktail name" is selected
+export const Opening = document.getElementById("opening");
+
+// if "Search for a cocktail by name" is selected
 // Get input and button
 export const inputNameSearch = document.getElementById("input-name-search");
 const btnNameSearch = document.getElementById("btn-name-search");
@@ -25,10 +30,11 @@ inputNameSearch.addEventListener("keyup", (e) => {
 // Fetch data
 btnNameSearch.addEventListener("click", () => {
   responseList.innerHTML = "";
+  Opening.style.display = "none";
   fetchDataByCocktailName();
 });
 
-// if "Search by ingredient" is selected
+// if "Search for a cocktail by ingredient" is selected
 // Get input and button
 export const inputIngredientSearch = document.getElementById(
   "input-ingredient-search"
@@ -43,5 +49,16 @@ inputIngredientSearch.addEventListener("keyup", (e) => {
 // Fetch data
 btnIngredientSearch.addEventListener("click", () => {
   responseList.innerHTML = "";
+  Opening.style.display = "none";
   fetchDataByIngredientName();
+});
+
+// Click on the opening page will hide it and display the header, the footer and the select element
+const opening = document.getElementById("opening");
+const header = document.getElementById("header");
+opening.addEventListener("click", () => {
+  opening.style.display = "none";
+  header.style.display = "flex";
+  footer.style.display = "flex";
+  selectOption.style.display = "flex";
 });

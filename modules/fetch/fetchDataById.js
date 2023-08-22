@@ -121,12 +121,12 @@ export async function fetchDataById(id) {
       ingredientsTable.push(drink.strIngredient15);
     }
     ingredientsTable = ingredientsTable.join("<br>");
-    ingredients.innerHTML = `<span class="bold">Ingredients:</span><br>${ingredientsTable}`;
+    ingredients.innerHTML = `<span class="titles-li-p">Ingredients:</span><br>${ingredientsTable}`;
     li.appendChild(ingredients);
 
     // Instructions
     const instructions = document.createElement("p");
-    instructions.innerHTML = `<span class="bold">Instructions:</span><br>${drink.strInstructions}`;
+    instructions.innerHTML = `<span class="titles-li-p">Instructions:</span><br>${drink.strInstructions}`;
     li.appendChild(instructions);
 
     responseList.appendChild(li);

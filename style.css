@@ -1,70 +1,267 @@
+:root {
+  --body-upBtn-bg-color: #14cae2;
+  --header-footer-upBtn-bg-color: #5bdbec;
+  --select-bg-color: #eee;
+  --btn-search-hover-bg-color: #ccc;
+  --ingredient-upBtn-hover-bg-color: #5bdbec;
+  --header-footer-titles-upBtn-text-color: #ffe569;
+  --header-footer-titles-upBtn-text-shadow: #00f;
+  --box-shadow: #ffe569;
+}
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background-color: rgb(20, 202, 226);
-  font-family: "Waiting for the Sunrise", cursive;
+  background-color: var(--body-upBtn-bg-color);
+  font-family: "Crimson Text", serif;
+  height: 100vh;
+  position: relative;
 }
 
-.logo {
-  width: 80vw;
+/****************************************************************/
+
+header {
+  display: none;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 80px;
+  background-color: var(--header-footer-upBtn-bg-color);
+  box-shadow: 0 1px 1px rgb(219, 208, 54);
 }
 
-h1 {
+header img {
+  width: 50px;
+  border-radius: 5px;
+}
+
+header h1,
+h2,
+.text-opening {
   font-family: "Rock Salt", cursive;
-  color: rgb(189, 179, 45);
+  font-size: 20px;
+  color: var(--header-footer-titles-upBtn-text-color);
   text-shadow: 1px 1px 2px #00f;
 }
 
-h2 {
-  font-family: "Permanent Marker", cursive;
-  color: rgb(189, 179, 45);
-  text-shadow: 1px 1px 2px #00f;
-}
-
-.bold {
+header h1 {
   font-weight: 900;
 }
 
-.input-search {
-  width: 300px;
-}
+/**************************************************************/
 
-li {
-  cursor: pointer;
-}
-
-.display-none {
+footer {
   display: none;
-}
-
-.move-up {
-  display: none;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  color: var(--header-footer-titles-upBtn-text-color);
+  text-shadow: 1px 1px 2px #00f;
   position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  border: none;
-  outline: none;
-  background-color: transparent;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(91, 219, 236);
+  padding: 3px 0;
+  box-shadow: 0 -1px 1px rgb(219, 208, 54);
+}
+
+footer span {
+  font-family: "Rock Salt", cursive;
+}
+
+/*****************************************************************/
+
+.opening {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("./img/blue-and-yellow-cocktail.jpg") center/340% no-repeat;
+  height: 100vh;
   cursor: pointer;
 }
 
-/*body {
-  background-color: black;
-}*/
-
-.move-up img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  /*background-color: #999;   pour dark mode*/
+.text-opening {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 80vh;
+  font-size: 30px;
+  text-align: center;
+  font-weight: 900;
 }
+
+.text-opening h2 {
+  font-size: 40px;
+}
+
+/****************************************************************/
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0 20px;
+}
+
+select {
+  display: none;
+  width: 243px;
+  height: 30px;
+  border-radius: 5px;
+  font-family: "Crimson Text", serif;
+  font-size: 16px;
+  align-self: center;
+  background-color: #eee;
+  margin-bottom: 20px;
+}
+
+/*********************************************************************/
+
+.div-search {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-search {
+  font-family: "Crimson Text", serif;
+  font-size: 16px;
+  width: 300px;
+  height: 40px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  border: transparent;
+  border-radius: 5px;
+}
+
+.btn-search {
+  font-family: "Crimson Text", serif;
+  font-size: 16px;
+  border: transparent;
+  border-radius: 5px;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.btn-search:hover {
+  background-color: #ccc;
+}
+
+/********************************************************************/
+
+.response-list {
+  list-style-type: none;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.response-list li {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 3px rgb(241, 226, 9);
+  padding: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  cursor: pointer;
+}
+
+.response-list li:last-child {
+  margin-bottom: 60px;
+}
+
+.response-list li h2 {
+  text-align: center;
+  line-height: 30px;
+  margin-bottom: 20px;
+}
+
+.response-list li img {
+  border-radius: 5px;
+}
+
+.response-list li p {
+  text-align: center;
+  padding: 5px;
+}
+
+.titles-li-p {
+  color: rgb(219, 208, 54);
+  text-shadow: 1px 1px 2px #00f;
+  font-weight: 900;
+  line-height: 50px;
+  font-size: 20px;
+}
+
+/**********************************************************************/
 
 .alphabet {
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
 }
 
-.alphabet li {
+.letter {
   font-size: 23px;
   padding-bottom: 5px;
+  cursor: pointer;
+  color: rgb(219, 208, 54);
+  text-shadow: 1px 1px 2px #00f;
+  font-weight: 900;
+}
+
+.li-ingredient {
+  text-align: center;
+  color: rgb(219, 208, 54);
+  text-shadow: 1px 1px 2px #00f;
+  font-weight: 900;
+  width: 50vw !important;
+}
+
+.li-ingredient:hover {
+  background-color: rgb(91, 219, 236);
+}
+
+/***********************************************************************/
+
+.random-btn {
+  display: none;
+}
+
+/*************************************************************************/
+
+.move-up {
+  display: none;
+  position: fixed;
+  bottom: 57px;
+  right: 10px;
+  z-index: 99;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 3px var(--box-shadow);
+  border-radius: 50%;
+  background-color: var(--header-footer-upBtn-bg-color);
+}
+
+.move-up:hover {
+  background-color: var(--box-shadow);
+}
+
+.move-up i {
+  padding: 5px;
+  color: var(--header-footer-titles-upBtn-text-color);
+  text-shadow: 1px 1px 2px var(--header-footer-titles-upBtn-text-shadow);
+  font-weight: 900;
 }

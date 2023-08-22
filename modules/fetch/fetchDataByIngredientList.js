@@ -30,18 +30,19 @@ export async function fetchDataByIngredientList(letter) {
         })
         // Fetch the cocktails containing the ingredient chosen
         .map((ingredient) => {
-          const name = document.createElement("li");
-          name.innerText =
+          const li = document.createElement("li");
+          li.setAttribute("class", "li-ingredient");
+          li.innerText =
             ingredient.strIngredient1.charAt(0).toUpperCase() +
             ingredient.strIngredient1.slice(1);
 
           // Each ingredient of the list is clickable for a complete display of all cocktails containing it
-          name.addEventListener("click", () => {
+          li.addEventListener("click", () => {
             responseList.innerHTML = "";
-            fetchDataByIngredientName(name.innerText);
+            fetchDataByIngredientName(li.innerText);
           });
 
-          responseList.appendChild(name);
+          responseList.appendChild(li);
         });
     }
   } catch {

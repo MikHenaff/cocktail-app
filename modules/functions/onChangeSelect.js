@@ -8,9 +8,9 @@ import { fetchRandomData } from "../fetch/fetchRandomData.js";
 import { displayCocktailsByFirstLetter } from "./displayCocktailsByFirstLetter.js";
 import { displayIngredientsByFirstLetter } from "./displayIngredientsByFirstLetter.js";
 
-const selectOption = document.getElementById("select");
+export const selectOption = document.getElementById("select");
 
-// Management of the HTML element select on change
+// Management of the select element on change
 export function onChangeSelect() {
   selectOption.addEventListener("change", () => {
     const divName = document.getElementById("div-name-search");
@@ -30,7 +30,7 @@ export function onChangeSelect() {
         alphabetList.style.display = "none";
         divIngredient.style.display = "none";
         randomBtn.style.display = "none";
-        divName.style.display = "block";
+        divName.style.display = "flex";
         inputNameSearch.focus();
         break;
       case "ingredient":
@@ -38,7 +38,7 @@ export function onChangeSelect() {
         alphabetList.style.display = "none";
         divName.style.display = "none";
         randomBtn.style.display = "none";
-        divIngredient.style.display = "block";
+        divIngredient.style.display = "flex";
         inputIngredientSearch.focus();
         break;
       case "all-cocktails":
