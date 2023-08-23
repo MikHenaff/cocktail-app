@@ -9,13 +9,16 @@ import { displayCocktailsByFirstLetter } from "./displayCocktailsByFirstLetter.j
 import { displayIngredientsByFirstLetter } from "./displayIngredientsByFirstLetter.js";
 
 export const selectOption = document.getElementById("select");
+export const divName = document.getElementById("div-name-search");
+export const divIngredient = document.getElementById("div-ingredient-search");
+export const randomBtn = document.getElementById("random-btn");
 
 // Management of the select element on change
 export function onChangeSelect() {
   selectOption.addEventListener("change", () => {
-    const divName = document.getElementById("div-name-search");
-    const divIngredient = document.getElementById("div-ingredient-search");
-    const randomBtn = document.getElementById("random-btn");
+    //const divName = document.getElementById("div-name-search");
+    //const divIngredient = document.getElementById("div-ingredient-search");
+    //const randomBtn = document.getElementById("random-btn");
 
     switch (selectOption.value) {
       case "choose":

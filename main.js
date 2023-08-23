@@ -3,6 +3,9 @@ import { fetchDataByCocktailName } from "./modules/fetch/fetchDataByCocktailName
 import {
   selectOption,
   onChangeSelect,
+  divName,
+  divIngredient,
+  randomBtn,
 } from "./modules/functions/onChangeSelect.js";
 import { onScroll } from "./modules/functions/onScroll.js";
 
@@ -14,8 +17,6 @@ export const responseList = document.getElementById("response-list");
 
 // variable for displaying the letters for an alphabetical searching
 export const alphabetList = document.getElementById("alphabet");
-
-export const Opening = document.getElementById("opening");
 
 // if "Search for a cocktail by name" is selected
 // Get input and button
@@ -30,7 +31,6 @@ inputNameSearch.addEventListener("keyup", (e) => {
 // Fetch data
 btnNameSearch.addEventListener("click", () => {
   responseList.innerHTML = "";
-  Opening.style.display = "none";
   fetchDataByCocktailName();
 });
 
@@ -49,16 +49,31 @@ inputIngredientSearch.addEventListener("keyup", (e) => {
 // Fetch data
 btnIngredientSearch.addEventListener("click", () => {
   responseList.innerHTML = "";
-  Opening.style.display = "none";
   fetchDataByIngredientName();
 });
 
-// Click on the opening page will hide it and display the header, the footer and the select element
-const opening = document.getElementById("opening");
+// Click on the homePage page will hide it and display the header, the footer and the select element
+const homePage = document.getElementById("home-page");
 const header = document.getElementById("header");
-opening.addEventListener("click", () => {
-  opening.style.display = "none";
+homePage.addEventListener("click", () => {
+  homePage.style.display = "none";
   header.style.display = "flex";
   footer.style.display = "flex";
   selectOption.style.display = "flex";
+  selectOption.value = "choose";
+});
+
+// Click on the image in the header will reinitialize everything and display the homepage
+const headerImg = document.getElementById("header-img");
+headerImg.addEventListener("click", () => {
+  responseList.innerText = "";
+  alphabetList.style.display = "none";
+  divName.style.display = "none";
+  divIngredient.style.display = "none";
+  randomBtn.style.display = "none";
+  homePage.style.display = "none";
+  header.style.display = "none";
+  footer.style.display = "none";
+  selectOption.style.display = "none";
+  homePage.style.display = "flex";
 });

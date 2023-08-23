@@ -29,6 +29,7 @@ export async function fetchDataById(id) {
 
     // Create a card for the cocktail (name, image, ingredients, measures, instructions)
     const li = document.createElement("li");
+    li.setAttribute("class", "id-card");
     li.style.cursor = "default";
 
     // Name
