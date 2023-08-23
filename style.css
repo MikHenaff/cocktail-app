@@ -325,6 +325,10 @@ select {
   text-shadow: 1px 1px 2px var(--header-titles-upBtn-textShadow);
 }
 
+/*************************************************************/
+/*                        Media queries                      */
+/*************************************************************/
+
 @media (width >= 640px) {
   .move-up i {
     font-size: 30px;
