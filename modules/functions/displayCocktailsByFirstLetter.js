@@ -5,8 +5,9 @@ export function displayCocktailsByFirstLetter() {
   // if "All cocktails" is selected
 
   // Create alphabet letters
-  const alpha = Array.from(Array(26)).map((e, i) => i + 65);
-  let alphabet = alpha.map((x) => String.fromCharCode(x));
+  const alphabet = Array.from(Array(26))
+    .map((_, index) => index + 65)
+    .map((codeNumber) => String.fromCharCode(codeNumber));
 
   alphabet.map((letter) => {
     const li = document.createElement("li");

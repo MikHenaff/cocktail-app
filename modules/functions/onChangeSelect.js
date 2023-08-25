@@ -16,10 +16,6 @@ export const randomBtn = document.getElementById("random-btn");
 // Management of the select element on change
 export function onChangeSelect() {
   selectOption.addEventListener("change", () => {
-    //const divName = document.getElementById("div-name-search");
-    //const divIngredient = document.getElementById("div-ingredient-search");
-    //const randomBtn = document.getElementById("random-btn");
-
     switch (selectOption.value) {
       case "choose":
         responseList.innerText = "";

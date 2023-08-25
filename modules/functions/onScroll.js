@@ -1,5 +1,5 @@
 // Get the button
-const moveUp = document.getElementById("move-up");
+export const moveUp = document.getElementById("move-up");
 
 // Management of the display of the button when the page is scrolled and management of the scroll behavior on click
 export function onScroll() {

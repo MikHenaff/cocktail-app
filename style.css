@@ -1,8 +1,11 @@
 :root {
-  --header-footer-upBtn-bgColor: #5bdbec;
-  --header-titles-upBtn-textColor: #ffe569;
+  --body-bgColor: #14cae2;
+  --header-footer-bgColor: #5bdbec;
+  --header-titles-textColor: #ffe569;
   --boxShadow: #ffe569;
-  --header-titles-upBtn-textShadow: #00f;
+  --header-titles-textShadow: #00f;
+  --upBtn-textShadow: #ffe569;
+  --upBtn-color: rgb(42, 91, 252);
   --fontFamily-homePage-header-titles: "Rock Salt", cursive;
   --fontFamily-everythingElse: "Crimson Text", serif;
 }
@@ -16,10 +19,11 @@
 }
 
 body {
-  background-color: #14cae2;
+  background-color: var(--body-bgColor);
   font-family: var(--fontFamily-everythingElse);
   height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
 /*****************************************************************************************************/
@@ -31,7 +35,7 @@ header {
   justify-content: center;
   align-items: center;
   height: 80px;
-  background-color: var(--header-footer-upBtn-bgColor);
+  background-color: var(--header-footer-bgColor);
   box-shadow: 0 1px 1px var(--boxShadow);
 }
 
@@ -47,8 +51,8 @@ h2,
 .home-page-text {
   font-family: var(--fontFamily-homePage-header-titles);
   font-size: 20px;
-  color: var(--header-titles-upBtn-textColor);
-  text-shadow: 1px 1px 2px var(--header-titles-upBtn-textShadow);
+  color: var(--header-titles-textColor);
+  text-shadow: 1px 1px 2px var(--header-titles-textShadow);
 }
 
 header h1 {
@@ -68,7 +72,7 @@ footer {
   bottom: 0;
   padding: 3px 0;
   color: #000;
-  background-color: var(--header-footer-upBtn-bgColor);
+  background-color: var(--header-footer-bgColor);
   box-shadow: 0 -1px 1px var(--boxShadow);
 }
 
@@ -206,9 +210,9 @@ select {
 .titles-li-p {
   font-size: 20px;
   line-height: 50px;
-  color: var(--header-titles-upBtn-textColor);
+  color: var(--header-titles-textColor);
   font-weight: 900;
-  text-shadow: 1px 1px 2px var(--header-titles-upBtn-textShadow);
+  text-shadow: 1px 1px 2px var(--header-titles-textShadow);
 }
 
 /*************************************************************/
@@ -271,8 +275,8 @@ select {
   font-size: 23px;
   font-weight: 900;
   padding-bottom: 5px;
-  color: var(--header-titles-upBtn-textColor);
-  text-shadow: 1px 1px 2px var(--header-titles-upBtn-textShadow);
+  color: var(--header-titles-textColor);
+  text-shadow: 1px 1px 2px var(--header-titles-textShadow);
   cursor: pointer;
 }
 
@@ -280,12 +284,12 @@ select {
   width: 50vw !important;
   text-align: center;
   font-weight: 900;
-  color: var(--header-titles-upBtn-textColor);
-  text-shadow: 1px 1px 2px var(--header-titles-upBtn-textShadow);
+  color: var(--header-titles-textColor);
+  text-shadow: 1px 1px 2px var(--header-titles-textShadow);
 }
 
 .li-ingredient:hover {
-  background-color: var(--header-footer-upBtn-bgColor);
+  background-color: var(--header-footer-bgColor);
 }
 
 /*****************************************************************************************************/
@@ -305,32 +309,22 @@ select {
   position: fixed;
   bottom: 35px;
   right: 10px;
-  z-index: 99;
+  width: fit-content;
   border: none;
-  background-color: var(--header-footer-upBtn-bgColor);
-  box-shadow: 0 0 3px var(--boxShadow);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.move-up:hover {
-  background-color: var(--header-titles-upBtn-textColor);
+  background-color: transparent;
 }
 
 .move-up i {
   padding: 5px;
   font-size: 20px;
   font-weight: 900;
-  color: var(--header-titles-upBtn-textColor);
-  text-shadow: 1px 1px 2px var(--header-titles-upBtn-textShadow);
+  color: var(--upBtn-color);
+  cursor: pointer;
+  text-shadow: 2px 2px 2px var(--upBtn-textShadow);
 }
 
-/*************************************************************/
-/*                        Media queries                      */
-/*************************************************************/
-
-@media (width >= 640px) {
-  .move-up i {
-    font-size: 30px;
-  }
+.move-up i:hover {
+  font-size: 25px;
+  color: var(--upBtn-textShadow);
+  text-shadow: 2px 2px 2px var(--upBtn-color);
 }

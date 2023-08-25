@@ -1,8 +1,8 @@
 import { fetchDataByIngredientName } from "./modules/fetch/fetchDataByIngredientName.js";
 import { fetchDataByCocktailName } from "./modules/fetch/fetchDataByCocktailName.js";
 import {
-  selectOption,
   onChangeSelect,
+  selectOption,
   divName,
   divIngredient,
   randomBtn,
@@ -61,6 +61,11 @@ homePage.addEventListener("click", () => {
   footer.style.display = "flex";
   selectOption.style.display = "flex";
   selectOption.value = "choose";
+
+  // Allow the overflow when the user is not on the homepage
+  homePage.style.display === "none"
+    ? (document.body.style.overflowY = "visible")
+    : (document.body.style.overflowY = "hidden");
 });
 
 // Click on the image in the header will reinitialize everything and display the homepage
@@ -76,4 +81,9 @@ headerImg.addEventListener("click", () => {
   footer.style.display = "none";
   selectOption.style.display = "none";
   homePage.style.display = "flex";
+
+  // Hide the overflow on the homepage (with firefox)
+  homePage.style.display === "flex"
+    ? (document.body.style.overflowY = "hidden")
+    : (document.body.style.overflowY = "visible");
 });
