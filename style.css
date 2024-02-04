@@ -27,6 +27,30 @@ body {
 }
 
 /*****************************************************************************************************/
+/*                                              Home page                                         */
+/*****************************************************************************************************/
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("./img/blue-and-yellow-cocktail.jpg") center center no-repeat
+    fixed;
+  background-size: cover;
+  height: 100vh;
+  cursor: pointer;
+}
+
+.home-page-text {
+  text-align: center;
+}
+
+.home-page-text h2 {
+  font-size: 50px;
+  font-weight: 900;
+}
+
+/*****************************************************************************************************/
 /*                                              Header                                               */
 /*****************************************************************************************************/
 
@@ -41,7 +65,7 @@ header {
 
 header img {
   width: 50px;
-  margin-right: 100px;
+  margin-right: 20px;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -74,35 +98,6 @@ footer {
   color: #000;
   background-color: var(--header-footer-bgColor);
   box-shadow: 0 -1px 1px var(--boxShadow);
-}
-
-/*****************************************************************************************************/
-/*                                              Home page                                         */
-/*****************************************************************************************************/
-
-.home-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: url("./img/blue-and-yellow-cocktail.jpg") center center no-repeat
-    fixed;
-  background-size: cover;
-  height: 100vh;
-  cursor: pointer;
-}
-
-.home-page-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  height: 80vh;
-  font-size: 30px;
-  font-weight: 900;
-}
-
-.home-page-text h2 {
-  font-size: 40px;
 }
 
 /*****************************************************************************************************/
@@ -216,7 +211,7 @@ select {
 }
 
 /*************************************************************/
-/*                        Media queries                      */
+/*                        Results media queries                      */
 /*************************************************************/
 
 @media (width >= 1024px) {
